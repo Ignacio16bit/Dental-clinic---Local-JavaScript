@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css">
+    <link rel="icon" href="/imagenes/favicon.png">
+    <title>DavanDent</title>
+</head>
+<body>
+    
+        <header style="display: flex; justify-content: center;">
+            <div class="ui image big">
+                <img src="/imagenes/logo dientes.png" alt="logo DavanDent">
+            </div>
+        </header>
+
+    <main class="ui container" style="margin-top:1%;">
+
+        <div class="ui container">
+            <form id="formulario" method="post" class="ui form" id="register-form">
+                    <h4 class="ui dividing header">Datos del paciente</h4>
+                    <div class="required field">
+                        <input type="text" id="name" placeholder="Nombre">
+                    </div>
+                    <div class="field">
+                        <input type="text" id="apellido" placeholder="Apellido">
+                    </div>
+                    <div class="required field">
+                        <input type="number" id="tlf" placeholder="Número de tlf.">
+                    </div>
+                    <div class="required field">
+                        <input type="text" id="dni" placeholder="DNI">
+                    </div>
+                    <div class="required field">
+                        <input type="date" id="birth">
+                    </div>
+
+                    <h4 class="ui dividing header">Información de la cita</h4>
+                    <div class="field">
+                        <input type="date" id="diaCita" placeholder="Día de la cita">
+                    </div>
+                    <div class="field">
+                        <input type="time" id="horaCita" placeholder="Hora de la cita">
+                    </div>
+                    <div class="field">
+                        <textarea placeholder="Observaciones" id="observ"></textarea>
+                    </div>
+                    <button id="create" style="margin-left: 50%; transform: translateX(-50%);" type="button" onclick="" class="ui primary button">Guardar cita</button>
+            </form>
+        </div>
+
+        <div class="ui divider"></div>
+        <details id="citas">
+            <summary>Ver agenda de citas</summary>
+            <table class="ui selectable celled table" id="tabla-citas">
+                <thead>
+                    <tr>
+                        <th>Orden de cita</th>
+                        <th>Nombre paciente</th>
+                        <th>DNI</th>
+                        <th>Teléfono</th>
+                        <th>Fecha de nacimiento</th>
+                        <th>Día de la cita</th>
+                        <th>Hora de la cita</th>
+                        <th>Editar entrada</th>
+                    </tr>
+                </thead>
+            </table>
+        </details>
+
+        <div id="modalEdit" class="ui modal">
+            <div class="content">
+                <form action="" method="post" class="ui form">
+                    <h4 class="ui dividing header">Información del paciente</h4>
+
+                    <label>Nombre y apellidos</label>
+                <div class="two fields">
+                    <input type="text" id="nameEdit" placeholder="Nombre">
+                    <input type="text" id="apellidoEdit" placeholder="Apellido">
+                </div>
+
+                <label>Número de teléfono</label>
+                <div class="field">
+                    <input type="number" id="tlfEdit" placeholder="Número de tlf.">
+                </div>
+
+                <label>DNI y fecha de nacimiento</label>
+                    <div class="fields">
+                        <div class="twelve wide field">
+                            <input type="text" id="dniEdit" placeholder="DNI">
+                        </div>
+                        <div class=" four wide field">
+                            <input type="date" id="birthEdit">
+                        </div>
+                    </div>
+
+                    <h4 class="ui dividing header">Información de la cita</h4>
+                <div class="two fields">
+                    <input type="date" id="diaCitaEdit">
+                    <input type="time" id="horaCitaEdit">
+                </div>
+                <div class="field">
+                    <textarea placeholder="Observaciones" id="observEdit"></textarea>
+                </div>
+            </form>
+            <button onclick="guardarEdit();" class="ui primary button">Guardar</button>
+            <button class="ui button" onclick="$('#modalEdit').modal('hide')">Cancelar</button>
+
+            </div>
+        </div>
+        
+
+        <div class="ui divider"></div>
+
+        <div class="ui segment center aligned" style="margin-bottom: 30px;">
+            <p><i class="blue icon map marker alternate"></i>Clínica DavanDent en calle Sol nº1, Sevilla, España.</p>
+            <p><i class="blue icon phone"></i>Nº de tlf. 600 12 34 56</p>
+            <p><i class="blue icon envelope outline"></i>Correo de contacto: davandent@clínica.com</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="ui segment center aligned">
+            <p>&copy; 2026 DavanDent. Todos los derechos reservados</p>
+            <p>Desarrollado por Ignacio Prieto | Tecnologías: HTML5, Semantic UI, JavaScript</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
+    
+    <script src="dentScript.js"></script>
+    <script src="edit.js"></script>
+</body>
+</html>
