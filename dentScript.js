@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", cargarEntradas);
 
 function error(mensaje){
@@ -71,8 +70,7 @@ document.getElementById('create').addEventListener('click', function(e){
         console.log('Entrada autorizada, creando tabla...');
         crearEntrada();
     } else {
-        console.log('Error en creación');
-        error('Algo fue mal durante la creación de la cita. Revise consola o contacte a IT');
+        console.log('Error en creación. Revise posibles errores.');
     }
 })
 
@@ -98,6 +96,7 @@ function crearEntrada(){
 
     console.log('Guardando datos en almacenamiento local...');
     let citaStorage = JSON.parse(localStorage.getItem('citaStorage')) || [];
+    
     citaStorage.push(Cita);
     localStorage.setItem('citaStorage', JSON.stringify(citaStorage));
     console.log('Datos guardados con éxito.');
@@ -125,7 +124,21 @@ function crearEntrada(){
 
 function cargarEntradas(){
     let citas = JSON.parse(localStorage.getItem('citaStorage')) || [];
-
+    let tabla = document.getElementById("tabla-citas");
+    //Si no hay datos
+    if(citas.length === 0){
+        tabla.innerHTML = `
+        <tr>
+            <td colspan = "7" class="ui center aligned">
+                <div class="ui message">
+                    No hay datos registrados aún
+                </div>
+            </td>
+        </tr>
+        `;
+        //Si no hay datos salgo de la función
+        return;
+    }
     //Ordeno las citas por fecha y horas antes de mostrarlas
     citas.sort((a,b) =>{
         //Fecha
@@ -136,7 +149,6 @@ function cargarEntradas(){
             return a.citaTime.localeCompare(b.citaTime);
         }
     });
-
     citas.forEach((cita, index) => { let citaArray = [
         (index+1).toString(),
         cita.pacName +" "+ cita.pacSurname,
@@ -153,7 +165,7 @@ function cargarEntradas(){
         td.textContent = citaArray[i];
         entrada.appendChild(td);
     };
-    document.getElementById("tabla-citas").appendChild(entrada);
+    tabla.appendChild(entrada);
     
     let botonBorrar = document.createElement("button");
     botonBorrar.innerHTML = 'Borrar';
