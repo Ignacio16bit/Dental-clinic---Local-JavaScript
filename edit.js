@@ -1,5 +1,4 @@
 //Editar entradas
-//https://lenguajejs.com/javascript/arrays/array-functions/
 let edicion;
 function editarEntrada(id){
     let citas = JSON.parse(localStorage.getItem("citaStorage")) || [];
@@ -76,4 +75,5 @@ function borrarEntrada(id){
     } else {
         console.log('Borrado cancelado');
     }
+
 }
